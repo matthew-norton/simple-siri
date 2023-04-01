@@ -1,23 +1,10 @@
 import datetime
 import os
 
-# To Do:
-# 1) Add ability to do regex to search for file and folder names
-# 2) Add ability to do regex to search for contact names
-# 3) Add ability to do regex to search for event names
-# 4) Add ability to do regex to search for calendar names
-# 5) Add ability to do regex to search for email addresses
-# 6) Add bash script version of prompt
-# 7) Dynamically inject the username into the prompt (is this even needed?)
-# 8) Do multistep operations: open website, get info
-# 9) ability to manipulate Pages documents
-# 10) ability to manipulate Keynote documents
-# 11) Generic ability to break down multi-step instructions into individual steps.
-# 12) Add a vector DB of applescript examples to do synamic prompting.
-# Reading and summarization capabilities instead of just running single pieces of code.
 
-
-def get_applescript_prompt(web_browser="Firefox",):
+def get_applescript_prompt(
+    web_browser="Firefox",
+):
 
     # The main prompt for writing simple AppleScript code to perform tasks
     prompt = (

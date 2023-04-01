@@ -8,10 +8,6 @@ import speech_recognition as sr
 from .prompts import get_applescript_prompt
 
 
-# To Do:
-# 1) See if different temp makes code more consistent. And see if it helps it follow the few-shot examples better.
-# 2) See if can get Codex working better. It's not working well right now.
-# 3) Make a mechanism so that if a request works, you save the code and request to a database. Then you can use these in your prompts.
 class Conversation:
     """A class to hold the conversation state and methods to interact with it.
     Args: OPENAI_API_KEY (str): The API key for OpenAI.
@@ -51,10 +47,10 @@ class Conversation:
         # Send a request to OpenAI and return the response
         response = dict(
             openai.ChatCompletion.create(
-                model="gpt-3.5-turbo", 
+                model="gpt-3.5-turbo",
                 messages=self.system_prompt + list(self.messages),
                 temperature=0.2,
-                #stop=["```End-of-code."],
+                # stop=["```End-of-code."],
             )["choices"][0]["message"]
         )
         self.rate_limit()
@@ -64,8 +60,7 @@ class Conversation:
         # Send a request to OpenAI and append the response to messages
         request = {
             "role": "user",
-            "content": 
-                f"""X: {request}.
+            "content": f"""X: {request}.
                 Language: {language}.""",
         }
         self.messages.append(request)
@@ -149,7 +144,7 @@ class Conversation:
         # Loading a new model to give the option to try a different one
         llm = lambda x: openai.ChatCompletion.create(
             model="gpt-3.5-turbo",
-            #stop=["```End-of-code."],
+            # stop=["```End-of-code."],
             messages=[
                 {"role": "user", "content": x},
             ],
@@ -164,7 +159,9 @@ class Conversation:
         reason = llm(get_reason)
         # Ask the LLM to correct the code
         get_correction = (
-            get_reason + reason + f"Provide the corrected {language}. Code should start and end with triple backticks like this: ```<code>```End-of-code."
+            get_reason
+            + reason
+            + f"Provide the corrected {language}. Code should start and end with triple backticks like this: ```<code>```End-of-code."
         )
         print(reason)
         fixed_code = llm(get_correction).split("```")[-2]
