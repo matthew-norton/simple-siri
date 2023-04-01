@@ -17,6 +17,14 @@ The assistant can do a variety of simple tasks. Try to ask it to:
 
 You can do some surprisingly complex things with this mini-assistant. For example, you can ask it to "Open up a new document in the numbers app. Then add a table with information about 10 countries with columns for name, official language, and continent."
 
+## How to use it
+1) Install the requirements: `pip install -r requirements.txt`
+2) Run the assistant: `python main.py`
+3) Choose whether you want to interact with it via text or voice commands when prompted.
+4) Enter your OpenAI API key when prompted.
+5) It will show you the code it generated and ask it it's ok to run it. You can turn this off by setting `trust_the_code=True` in `main.py`.
+
+## Notes
 A few notes from this experiment:
 1) I actually didn't even know that Applescript existed before doing this project. I started by asking the LLM to write code to do certain tasks on MacOS and Applescript is what it generated. 
 
