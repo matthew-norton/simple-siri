@@ -1,0 +1,215 @@
+X: Send a text message to matthew norton with a list of events from my calendar for today.
+Language: AppleScript.
+```
+set theMessage to ""
+set todayDate to current date
+set theStartDate to todayDate
+set theEndDate to todayDate + (24 * 60 * 60) -- add 24 hours to get end of day
+
+tell application "Calendar"
+    set todayEvents to every event of calendar "Home" whose start date is greater than or equal to theStartDate and end date is less than or equal to theEndDate
+    repeat with anEvent in todayEvents
+        set theMessage to theMessage & summary of anEvent & " at " & start date of anEvent & return
+    end repeat
+end tell
+
+tell application "Contacts"
+    set matchingPeople to people whose name contains "Matthew Norton"
+    if length of matchingPeople is 0 then
+        display dialog "Matthew Norton not found in Contacts."
+    else
+        set matthew to item 1 of matchingPeople
+        set phoneNumbers to value of phones of matthew
+        if length of phoneNumbers is 0 then
+            display dialog "Matthew Norton does not have a phone number in Contacts."
+        else
+            set matthewPhoneNumber to item 1 of phoneNumbers
+            tell application "Messages"
+                send theMessage to buddy matthewPhoneNumber of service 1
+            end tell
+        end if
+    end if
+end tell
+```End-of-code.
+
+X: Open up a new document in the numbers app. Then add a table with information about 10 fruits with columns for name, color, and shape .
+    Language: AppleScript.
+    ```
+    tell application "Numbers"
+        activate
+        tell application "System Events"
+            keystroke "n" using {command down}
+        end tell
+        tell the front document
+            tell sheet 1
+                set fruitTable to make new table with properties {row count:10, column count:3}
+
+                set value of cell 1 of row 1 of fruitTable to "Name"
+                set value of cell 2 of row 1 of fruitTable to "Color"
+                set value of cell 3 of row 1 of fruitTable to "Shape"
+                
+                set value of cell 2 of row 2 of fruitTable to "Red"
+                set value of cell 1 of row 2 of fruitTable to "Apple"
+                set value of cell 3 of row 2 of fruitTable to "Round"
+                
+                set value of cell 2 of row 3 of fruitTable to "Yellow"
+                set value of cell 1 of row 3 of fruitTable to "Banana"
+                set value of cell 3 of row 3 of fruitTable to "Crescent"
+                
+                set value of cell 2 of row 4 of fruitTable to "Red"
+                set value of cell 1 of row 4 of fruitTable to "Cherry"
+                set value of cell 3 of row 4 of fruitTable to "Round"
+                
+                set value of cell 2 of row 5 of fruitTable to "Green"
+                set value of cell 1 of row 5 of fruitTable to "Grape"
+                set value of cell 3 of row 5 of fruitTable to "Round"
+                
+                set value of cell 2 of row 6 of fruitTable to "Brown"
+                set value of cell 1 of row 6 of fruitTable to "Kiwi"
+                set value of cell 3 of row 6 of fruitTable to "Oval"
+                
+                set value of cell 2 of row 7 of fruitTable to "Orange"
+                set value of cell 1 of row 7 of fruitTable to "Mandarin"
+                set value of cell 3 of row 7 of fruitTable to "Round"
+                
+                set value of cell 2 of row 8 of fruitTable to "Green"
+                set value of cell 1 of row 8 of fruitTable to "Melon"
+                set value of cell 3 of row 8 of fruitTable to "Oval"
+                
+                set value of cell 2 of row 9 of fruitTable to "Yellow"
+                set value of cell 1 of row 9 of fruitTable to "Pineapple"
+                set value of cell 3 of row 9 of fruitTable to "Elongated"
+                
+                set value of cell 2 of row 10 of fruitTable to "Orange"
+                set value of cell 1 of row 10 of fruitTable to "Peach"
+                set value of cell 3 of row 10 of fruitTable to "Round"
+                
+            end tell
+        end tell
+    end tell
+    ```End-of-code.
+    
+    X: Open a new document in text edit called new ideas. Then add a list of five ways to make money with machine learning.
+    Language: AppleScript.
+    ```
+    tell application "TextEdit"
+        activate
+        set newDoc to make new document with properties {name:"new ideas"}
+        tell newDoc
+            make new paragraph at the end with data "5 Ways to Make Money with Machine Learning:"
+            make new paragraph at the end with data "1. Building and selling machine learning models to companies."
+            make new paragraph at the end with data "2. Creating and selling custom machine learning algorithms."
+            make new paragraph at the end with data "3. Developing and selling machine learning software products."
+            make new paragraph at the end with data "4. Offering machine learning consulting services."
+            make new paragraph at the end with data "5. Building and selling data products that utilize machine learning technologies."
+        end tell
+    end tell
+    ```End-of-code.
+    
+    X: Text Jon Doe a message saying Ok, that sounds good. I'll head home now. We can watch a movie. Also include some suggestions for how to cook swordfish steaks.
+    Language: AppleScript.
+    ```
+    tell application "Contacts"
+        set matchingPeople to people whose name contains "Jon Doe"
+        if length of matchingPeople is 0 then
+            display dialog "Jon Doe not found in Contacts."
+        else
+            set jon to item 1 of matchingPeople
+            set phoneNumbers to value of phones of jon
+            if length of phoneNumbers is 0 then
+                display dialog "Jon Doe does not have a phone number in Contacts."
+            else
+                set jonPhoneNumber to item 1 of phoneNumbers
+                set theMessage to "Ok, that sounds good. I'll head home now. We can watch a movie. Some suggestions for cooking swordfish steaks are: 1. Grilling with lemon butter, 2. Pan searing with herbs and garlic, 3. Baking with a tomato and basil topping."
+
+                tell application "Messages"
+                    send theMessage to buddy jonPhoneNumber of service 1
+                end tell
+            end if
+        end if
+    end tell
+    ```End-of-code.
+    
+    X: Show me Jon Doe's phone number.
+    Language: AppleScript.
+    ```
+    tell application "Contacts"
+        set matchingPeople to people whose name contains "Jon Doe"
+        if length of matchingPeople is 0 then
+            display dialog "Jon Doe not found in Contacts."
+        else
+            set jon to item 1 of matchingPeople
+            set phoneNumbers to value of phones of jon
+            if length of phoneNumbers is 0 then
+                display dialog "Jon Doe does not have a phone number in Contacts."
+            else
+                set jonPhoneNumber to item 1 of phoneNumbers
+                display dialog "Jon Doe's phone number is " & jonPhoneNumber
+            end if
+        end if
+    end tell
+    ```End-of-code.
+    
+    X: Send a text message to Luke Skywalker saying Hi, I'm Jarvis!
+    Language: AppleScript.
+    ```
+    set targetBuddyPhone to "+1 9795551234"
+    set theMessage to "Hi, I'm Jarvis."
+
+    tell application "Messages"
+        send theMessage to buddy targetBuddyPhone of service 1
+    end tell
+    ```End-of-code.
+
+    X: Send a text message to Darth Vader saying Hi, I'm Jarvis!
+    Language: AppleScript.
+    ```
+    display dialog "I cannot find that person in your contact list"
+    ```End-of-code.
+
+    X: Add an event to my calendar for my mom arriving in San Jose on March 10, 2023 at 9am.
+    Language: AppleScript.
+    ```
+    set theStartDate to current date
+    set year of theStartDate to 2023
+    set month of theStartDate to 3
+    set day of theStartDate to 10
+    set hours of theStartDate to 9
+    set minutes of theStartDate to 0
+    set seconds of theStartDate to 0
+
+    set theEndDate to current date
+    set year of theEndDate to 2023
+    set month of theEndDate to 3
+    set day of theEndDate to 10
+    set hours of theEndDate to 10
+    set minutes of theEndDate to 0
+    set seconds of theEndDate to 0
+
+    tell application "Calendar"
+        tell calendar "Home"
+            make new event with properties {summary:"Mom Arriving in San Jose!", start date:theStartDate, end date:theEndDate}
+        end tell
+    end tell
+    ```End-of-code.
+
+    X: Do a Google search for good wines. Language: AppleScript.
+    ```
+    do shell script "open 'http://www.google.com/search?q=good+wines'"
+    ```End-of-code.
+
+    X: Send an email to crazy dot cats with a z at gmail dot com with the subject line I need help with my computer and the body saying I am having trouble with my computer. I am getting an error message. I have tried restarting my computer and it still does not work. 
+    Language: AppleScript.
+    ```
+    set theRecipient to "crazy.catz@gmail.com"
+    set theSubject to "I need help with my computer"
+    set theContent to "I am having trouble with my computer. I am getting an error message that says I have tried restarting my computer and it still does not work. I have also tried to reinstall the program but it still does not work. I am not sure what to do next. Can you help me?"
+
+    tell application "Mail"
+        set theMessage to make new outgoing message with properties {subject:theSubject, content:theContent, visible:true}
+        tell theMessage
+            make new to recipient at end of to recipients with properties {address:theRecipient}
+            send
+        end tell
+    end tell
+    ```End-of-code.
