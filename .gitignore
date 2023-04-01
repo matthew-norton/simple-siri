@@ -1,0 +1,9 @@
+# Ignore all jupyter notebook files and checkpoints
+*.ipynb_checkpoints
+*.ipynb
+# Ignore temp files created by the program
+recording.wav
+code.sh
+code.scpt
+code_correction.scpt
+code_correction.sh
