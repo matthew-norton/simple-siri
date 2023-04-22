@@ -1,5 +1,5 @@
 # Simple Jarvis
-What can you make with an LLM and a few hours of prompt engineering? A minimal LLM-based Siri-like assistant (for MacOS) is what I ended up with. Can interact with it over text or via voice commands (using OpenAI's Whisper API). It uses ChatGPT to auto-generate and execute Applescript (or a Bash script) for accomplishing tasks. NOTE: Executing code is dangerous, so I recommend you review the code before executing (you will be prompted with a y/n choice when code is generated) or only use this on a test machine.
+What can you make with an LLM and a few hours of prompt engineering? A minimal LLM-based Siri-like assistant (for MacOS) is what I ended up with. Can interact with it over text or via voice commands (using OpenAI's Whisper API). It uses ChatGPT to auto-generate and execute Applescript (or a Bash script) for accomplishing tasks. NOTE: Executing untrusted code is dangerous, so I recommend you review the code before executing (you will be prompted with a y/n choice when code is generated) or only use this on a test machine.
 
 The assistant can do a variety of simple tasks. Try to ask it to:
 1) Send an email: "Send an email to X with the subject Y and the body Z. Also include a list of good home remedies for a cold."
